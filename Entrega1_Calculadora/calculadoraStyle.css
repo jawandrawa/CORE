@@ -1,0 +1,37 @@
+
+html, body{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: rgb(0, 0, 0);
+}
+h2{
+    color: red;
+}
+h3{
+    color:rgb(209, 39, 209);
+}
+button{
+    color: magenta;
+    background-color:turquoise;
+}
+
+#OpUnitarias{
+    width: 40%;
+    height: 30%;
+    border: solid 5px magenta;
+}
+#OpBinarias{
+    width: 57%;
+    height: 30%;
+    border: solid 5px magenta;
+}
+
+#OpCSV{
+    width: 51%;
+    height: 30%;
+    border: solid 5px magenta;
+}
+button:hover{
+    color: blue;
+    background-color: yellow;
+}
