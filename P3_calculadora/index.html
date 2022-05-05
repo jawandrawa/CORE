@@ -1,0 +1,136 @@
+<head>
+	<meta charset="utf-8">  
+	<script type= "text/javascript">
+
+	//operaciones unitarias
+	function sq (){
+    	let n = document.getElementById("pantalla");
+		let res = n.value * n.value;
+		document.getElementById("pantalla").value = res;
+		rellenar_info();
+	}
+	function fact(){
+		let num = document.getElementById("pantalla");
+		let aux = 1;
+		while(num.value > 1){
+				aux  = aux * num.value;
+				num.value--;
+			}
+		document.getElementById("pantalla").value = aux;
+		rellenar_info();}
+	
+	//operaciones binarias
+    let operador = "";
+    let total= 0;
+
+    function vaciar(){
+        document.getElementById("pantalla").value = "";
+    }
+
+    function validar(){
+        let listaString = document.getElementById("pantalla").value.split(",");
+        for ( i = 0 ; i < listaString.length; i++){
+            if(Number.isNaN(Number(listaString[i]))){
+                document.getElementById("pantalla").value = "Error";
+                return false;
+            }
+        }
+        return true;
+    }
+    function saveInput (numInput){
+        switch (operador) {
+            case "multiplicador":
+            total *= numInput;
+            break;
+            case "":
+            total = numInput;
+            break;
+            case "sumador":
+            total += numInput;
+            case "resta":
+            total -= numInput;
+            break;
+            case "div":
+            total /= numInput;
+            break;
+            default:
+            break;
+        }
+        rellenar_info();
+    }
+	
+    function add(){
+        if (validar()) {
+            saveInput(Number(document.getElementById("pantalla").value));
+            total = document.getElementById("pantalla").value;
+            operador = "sumador";
+            vaciar();
+            rellenar_info();
+        }
+    }
+
+	function sub(){
+        if (validar()){
+            saveInput(Number(document.getElementById("pantalla").value));
+            operador = "resta";
+            vaciar();
+            rellenar_info();
+        }
+    }
+
+	function mul(){
+        if (validar()){
+            saveInput(Number(document.getElementById("pantalla").value));
+            operador = "multiplicacion";
+            vaciar();
+            rellenar_info();
+        }
+    }
+
+	function div(){        
+        if (validar()){
+            saveInput(Number(document.getElementById("pantalla").value));
+            operador = "div";
+            vaciar();
+            rellenar_info();
+        }
+    }
+
+	function igual(){
+        if (validar()){
+            saveInput(Number(document.getElementById("pantalla").value));
+            operador = "";
+            document.getElementById("pantalla").value = total;
+            rellenar_info();
+        }
+	}
+
+
+	//info del numero
+	const rellenar_info = () => {
+      if (Number(document.getElementById("pantalla").value) < 100) {
+        document.getElementById("info").innerHTML = "Info: El resultado es menor que 100";
+      } else if (Number(document.getElementById("pantalla").value) > 200) {
+        document.getElementById("info").innerHTML = "Info: El resultado es superior a 200";
+      } else {
+        document.getElementById("info").innerHTML = "Info: El resultado está entre 100 y 200";
+      }
+    }
+
+	</script>
+</head>
+<body>
+	<h2 class="cabecera">Calculadora de CORE</h2>
+	<label for "pantalla">Número:</label>
+	<input id="pantalla" type="text">
+	<h2 id="info" class="grande" title="info sobre el numero">Info sobre el número</h2>
+	<h3>Operaciones unitarias</h3>
+	<button id="cuadrado" onclick="sq()"><b>x<sup>2</sup></b></button>
+	<button id="factorial" onclick="fact()">x!</button>
+	<h3>Operaciones binarios</h3>
+	<button id="suma" onclick="add()">+</button>
+	<button id="resta" onclick= "sub()">-</button>
+	<button id="multiplicacion" onclick="mul()">*</button>
+	<button id="division" onclick="div()">/</button>
+	<button id="igual" onclick="igual()">=</button>
+</body>
